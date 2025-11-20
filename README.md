@@ -1,30 +1,30 @@
-# AHJ‑DOM — Домашнее задание «Перемещение элемента»
+# AHJ‑DOM — игра с гоблином
 
 [![Build and Deploy to GitHub Pages](https://github.com/AlinaShamina/ahj-dom/actions/workflows/main.yml/badge.svg)](https://github.com/AlinaShamina/ahj-dom/actions/workflows/main.yml)
 
-**Демонстрация на GitHub Pages:**  
-[Перейти к приложению](https://AlinaShamina.github.io/ahj-dom/)
+**Демо:** [Перейти к игре на GitHub Pages](https://alinashamina.github.io/ahj-dom/)
 
 ---
 
-## Описание проекта
+## О проекте
 
-Это простая "игра", в которой персонаж (картинка гнома) появляется в случайной клетке поля размером 4×4 и затем периодически перемещается в другую случайную клетку. Перемещение реализовано через `setInterval`. Используются принципы работы с DOM: без `removeChild`, только смена родителя и вставка в новое место.
+Игра, где гоблин появляется в случайной клетке поля 4×4 и перемещается каждые 1.5 секунд.  
+Реализовано через DOM-манипуляции и Webpack: картинка загружается и вставляется программно.
 
 ---
 
 ## Технологии
 
-- Webpack — для сборки JS, CSS и изображений  
-- Babel — для трансформации современного JS  
-- ESLint — для поддержания качества кода  
-- Jest — для тестирования  
-- Webpack Dev Server — для запуска локального сервера разработки  
+- Webpack  
+- Babel (если используется)  
+- ESLint (если есть)  
+- Jest (если тесты)  
+- CSS, изображения
 
 ---
 
-## Как запустить локально
+## Запуск локально
 
 ```bash
-npm install
-npm run dev
+npm install  
+npm run dev  
