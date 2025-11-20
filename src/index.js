@@ -1,8 +1,31 @@
 import './styles.css';
-import Game from './game';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const field = document.getElementById('game-field');
-  const game = new Game(field);
-  game.init();
-});
+import goblinImg from './pic/goblin.png';
+
+
+const FIELD_SIZE = 4; 
+const gameField = document.querySelector('#game-field');
+
+for (let i = 0; i < FIELD_SIZE ** 2; i++) {
+  const cell = document.createElement('div');
+  cell.classList.add('cell');
+  gameField.appendChild(cell);
+}
+
+const goblin = document.createElement('img');
+goblin.src = goblinImg;
+goblin.classList.add('goblin');
+
+function moveGoblin() {
+  const cells = document.querySelectorAll('.cell');
+  const randomCell = cells[Math.floor(Math.random() * cells.length)];
+
+  if (goblin.parentNode) {
+    goblin.parentNode.removeChild(goblin);
+  }
+  randomCell.appendChild(goblin);
+}
+
+moveGoblin();
+
+setInterval(moveGoblin, 1500);
