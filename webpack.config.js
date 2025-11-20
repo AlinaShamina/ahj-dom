@@ -4,20 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/ahj-dom/', 
+    publicPath: '/ahj-dom/',  
     clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
@@ -28,15 +23,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
     }),
   ],
- devServer: {
-  static: {
-    directory: path.join(__dirname, 'dist'),
+  devServer: {
+    static: path.join(__dirname, 'dist'),
+    devMiddleware: {
+      publicPath: '/ahj-dom/',
+    },
+    open: true,
   },
-  historyApiFallback: true,
-  devMiddleware: {
-    publicPath: '/ahj-dom/',
-  },
-},
+  mode: 'development',
+};
