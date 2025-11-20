@@ -6,10 +6,9 @@ module.exports = {
   output: {
     filename: 'bundle.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/ahj-dom/',
+    publicPath: '/ahj-dom/',  // <-- важная строка
     clean: true,
   },
-
   module: {
     rules: [
       {
@@ -27,13 +26,11 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
   ],
-
   devServer: {
     static: './dist',
     open: true,
