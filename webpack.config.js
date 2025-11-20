@@ -31,8 +31,12 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-  devServer: {
-    static: './dist',
-    open: true,
+ devServer: {
+  static: {
+    directory: path.join(__dirname, 'dist'),
   },
-};
+  historyApiFallback: true,
+  devMiddleware: {
+    publicPath: '/ahj-dom/',
+  },
+},
