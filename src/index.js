@@ -1,7 +1,5 @@
 import './styles.css';
-
 import goblinImg from './pic/goblin.png';
-
 
 const FIELD_SIZE = 4; 
 const gameField = document.querySelector('#game-field');
@@ -9,7 +7,7 @@ const gameField = document.querySelector('#game-field');
 for (let i = 0; i < FIELD_SIZE ** 2; i++) {
   const cell = document.createElement('div');
   cell.classList.add('cell');
-  gameField.appendChild(cell);
+  gameField.append(cell);
 }
 
 const goblin = document.createElement('img');
@@ -23,9 +21,20 @@ function moveGoblin() {
   if (goblin.parentNode) {
     goblin.parentNode.removeChild(goblin);
   }
-  randomCell.appendChild(goblin);
+  randomCell.append(goblin);
 }
 
-moveGoblin();
+let intervalId = null;
 
-setInterval(moveGoblin, 1500);
+function startGame() {
+  if (!intervalId) {
+    intervalId = setInterval(moveGoblin, 1000);
+  }
+}
+
+function stopGame() {
+  clearInterval(intervalId);
+  intervalId = null;
+}
+
+startGame();
