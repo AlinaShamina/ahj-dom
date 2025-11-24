@@ -25,6 +25,8 @@
 
 ## Как запустить локально
 
+1. Клонируем репозиторий:
+
 ```bash
-npm install
-npm run dev
+git clone https://github.com/AlinaShamina/ahj-dom.git
+cd ahj-dom
