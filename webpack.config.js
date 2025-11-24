@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
@@ -8,49 +8,28 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    clean: true, // очищает dist при новой сборке
+    clean: true
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: { loader: "babel-loader" },
+        use: { loader: "babel-loader" }
       },
-      {
-        test: /\.html$/,
-        use: [{ loader: "html-loader" }],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [{ loader: "file-loader" }],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-    ],
+      { test: /\.html$/, use: ["html-loader"] },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      { test: /\.(png|jpe?g|gif)$/i, type: "asset/resource" }
+    ]
   },
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
+  optimization: { minimizer: [`...`, new CssMinimizerPlugin()] },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new MiniCssExtractPlugin()
   ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    compress: true,
-    port: 9000,
-    open: true,  // автоматически открывает браузер
-    hot: true,   // горячая перезагрузка
-  },
-  mode: "development",
+    static: "./dist",
+    open: true,
+    port: 9000
+  }
 };
